@@ -1,0 +1,16 @@
+# Cautious Bench — Python dependencies.
+#
+# Corpus generation uses the standard library only and runs on Python 3.10+.
+#
+# The packages below are for the guardrail adapters and the API-based guards.
+
+torch
+transformers
+huggingface_hub
+tqdm
+numpy
+
+# NeMo Guardrails (tested with 0.24.1).
+nemoguardrails==0.24.1
+openai
+pyyaml

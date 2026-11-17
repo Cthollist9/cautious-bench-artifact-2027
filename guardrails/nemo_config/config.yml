@@ -1,0 +1,23 @@
+# NeMo Guardrails 0.24.1 framework config for the benchmark.
+# Rail form: LLM check rail wired as an INPUT RAIL (the engine's self-check-input
+# mechanism), with the check task prompt defined in prompts.yml. The IORails
+# "tool call validation" rail was read and rejected for this slot: it is a local
+# structural schema/allowlist check with no policy slot and no LLM call
+# (docs/configure-rails/guardrail-catalog/tool-calling.mdx), i.e. it cannot
+# carry a deployment policy. On the LLMRails engine the action-check surface
+# where "policy lives in prompts.yml" is the self-check rail family.
+#
+# Placeholders below are replaced IN MEMORY by adapt_nemo.py from env vars
+# (NEMO_UNI_BASE / NEMO_UNI_KEY); credentials never land on disk.
+models:
+  - type: main
+    engine: openai
+    model: gpt-oss-120b
+    parameters:
+      base_url: "__NEMO_API_BASE__"
+      api_key: "__NEMO_API_KEY__"
+
+rails:
+  input:
+    flows:
+      - check pending action

@@ -1,0 +1,12 @@
+# Input-rail flow, mirroring the library's self-check input flow (v1 syntax,
+# nemoguardrails/library/self_check/input_check/flows.v1.co): run the LLM check
+# action once, refuse and stop on block. On allow the input passes through.
+define bot refuse to respond
+  "I'm sorry, I can't respond to that."
+
+define flow check pending action
+  $outcome = execute check_pending_action
+
+  if $outcome.is_blocked
+    bot refuse to respond
+    stop
